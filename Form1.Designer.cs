@@ -28,24 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            lblTitle = new Label();
+            txtStr = new TextBox();
+            lstMsg = new ListBox();
+            btnSend = new Button();
             SuspendLayout();
             // 
-            // label1
+            // lblTitle
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(60, 25);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("궁서체", 40F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblTitle.ForeColor = Color.Blue;
+            lblTitle.Location = new Point(71, 30);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(608, 80);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Echo Messenger";
+            // 
+            // txtStr
+            // 
+            txtStr.Location = new Point(71, 559);
+            txtStr.Name = "txtStr";
+            txtStr.Size = new Size(759, 31);
+            txtStr.TabIndex = 1;
+            txtStr.TextChanged += textBox1_TextChanged;
+            txtStr.KeyDown += txtStr_KeyDown;
+            // 
+            // lstMsg
+            // 
+            lstMsg.FormattingEnabled = true;
+            lstMsg.Location = new Point(71, 123);
+            lstMsg.Name = "lstMsg";
+            lstMsg.Size = new Size(947, 354);
+            lstMsg.TabIndex = 2;
+            // 
+            // btnSend
+            // 
+            btnSend.BackColor = Color.FromArgb(128, 255, 255);
+            btnSend.Font = new Font("휴먼모음T", 24F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            btnSend.ForeColor = Color.Black;
+            btnSend.Location = new Point(853, 513);
+            btnSend.Name = "btnSend";
+            btnSend.Size = new Size(196, 110);
+            btnSend.TabIndex = 3;
+            btnSend.Text = "전송";
+            btnSend.UseVisualStyleBackColor = false;
+            btnSend.Click += btnSend_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 255, 128);
             ClientSize = new Size(1305, 731);
-            Controls.Add(label1);
+            Controls.Add(btnSend);
+            Controls.Add(lstMsg);
+            Controls.Add(txtStr);
+            Controls.Add(lblTitle);
+            ForeColor = Color.RoyalBlue;
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -54,6 +94,9 @@
 
         #endregion
 
-        private Label label1;
+        private Label lblTitle;
+        private TextBox txtStr;
+        private ListBox lstMsg;
+        private Button btnSend;
     }
 }
