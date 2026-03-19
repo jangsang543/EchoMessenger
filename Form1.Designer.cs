@@ -1,4 +1,4 @@
-﻿namespace EchoMessenger
+﻿    namespace EchoMessenger
 {
     partial class Form1
     {
@@ -32,6 +32,7 @@
             txtStr = new TextBox();
             lstMsg = new ListBox();
             btnSend = new Button();
+            lblCount = new Label();
             SuspendLayout();
             // 
             // lblTitle
@@ -57,6 +58,7 @@
             // lstMsg
             // 
             lstMsg.FormattingEnabled = true;
+            lstMsg.ItemHeight = 25;
             lstMsg.Location = new Point(71, 123);
             lstMsg.Name = "lstMsg";
             lstMsg.Size = new Size(947, 354);
@@ -75,12 +77,24 @@
             btnSend.UseVisualStyleBackColor = false;
             btnSend.Click += btnSend_Click;
             // 
+            // lblCount
+            // 
+            lblCount.AutoSize = true;
+            lblCount.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            lblCount.ForeColor = Color.Black;
+            lblCount.Location = new Point(71, 695);
+            lblCount.Name = "lblCount";
+            lblCount.Size = new Size(136, 28);
+            lblCount.TabIndex = 4;
+            lblCount.Text = "현재 대화: 0개";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 128);
             ClientSize = new Size(1305, 731);
+            Controls.Add(lblCount);
             Controls.Add(btnSend);
             Controls.Add(lstMsg);
             Controls.Add(txtStr);
@@ -98,5 +112,6 @@
         private TextBox txtStr;
         private ListBox lstMsg;
         private Button btnSend;
+        private Label lblCount;
     }
 }

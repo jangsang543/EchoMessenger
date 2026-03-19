@@ -9,11 +9,14 @@ namespace EchoMessenger
         public Form1()
         {
             InitializeComponent();
+
+            // 초기 메시지 개수 표시 및 입력 포커스
+            UpdateMessageCount();
+            txtStr.Focus();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -25,7 +28,7 @@ namespace EchoMessenger
         {
             if (e.KeyCode == Keys.Enter)
             {
-                // 엔터 눌렀을 때 엔터 입력(벨 등)을 막고 전송 처리
+                // Enter의 기본 동작(벨 등) 방지 후 전송 처리
                 e.SuppressKeyPress = true;
                 SendMessage();
             }
@@ -33,10 +36,10 @@ namespace EchoMessenger
 
         private void SendMessage()
         {
-            // 앞뒤 공백 제거해서 본문만 검사
+            // 앞뒤 공백 제거
             string typed_msg = txtStr.Text.Trim();
 
-            // 비어 있거나 공백만 있는 경우 전송하지 않음
+            // 빈 문자열 또는 공백만 있으면 전송하지 않음
             if (string.IsNullOrEmpty(typed_msg))
             {
                 txtStr.Clear();
@@ -44,10 +47,28 @@ namespace EchoMessenger
                 return;
             }
 
-            // 정상 메시지 추가 후 입력창 비우기 및 포커스 유지
-            lstMsg.Items.Add(typed_msg);
+            // 타임스탬프 추가 [HH:mm:ss]
+            string timeStamp = DateTime.Now.ToString("HH:mm:ss");
+            string displayMsg = $"[{timeStamp}] {typed_msg}";
+
+            // 리스트에 추가 및 자동 스크롤
+            lstMsg.Items.Add(displayMsg);
+            if (lstMsg.Items.Count > 0)
+            {
+                lstMsg.TopIndex = lstMsg.Items.Count - 1;
+            }
+
+            // 입력창 초기화 및 포커스 유지
             txtStr.Clear();
             txtStr.Focus();
+
+            // 카운트 갱신
+            UpdateMessageCount();
+        }
+
+        private void UpdateMessageCount()
+        {
+            lblCount.Text = $"현재 대화: {lstMsg.Items.Count}개";
         }
     }
 }
