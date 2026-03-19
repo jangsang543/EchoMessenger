@@ -47,6 +47,14 @@ namespace EchoMessenger
                 return;
             }
 
+            // 길이 제한(추가 안전 검사: 디자이너에 MaxLength를 설정했어도 Trim 후 길이 확인)
+            if (typed_msg.Length > 50)
+            {
+                MessageBox.Show("메시지는 최대 50자까지 입력할 수 있습니다.", "입력 제한", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtStr.Focus();
+                return;
+            }
+
             // 타임스탬프 추가 [HH:mm:ss]
             string timeStamp = DateTime.Now.ToString("HH:mm:ss");
             string displayMsg = $"[{timeStamp}] {typed_msg}";
@@ -69,6 +77,42 @@ namespace EchoMessenger
         private void UpdateMessageCount()
         {
             lblCount.Text = $"현재 대화: {lstMsg.Items.Count}개";
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lstMsg.SelectedIndex >= 0)
+                {
+                    lstMsg.Items.RemoveAt(lstMsg.SelectedIndex);
+                    UpdateMessageCount();
+                }
+                else
+                {
+                    MessageBox.Show("삭제할 항목을 선택하세요.", "삭제 실패", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("삭제 중 오류가 발생했습니다: " + ex.Message, "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnClearAll_Click(object sender, EventArgs e)
+        {
+            if (lstMsg.Items.Count == 0)
+            {
+                MessageBox.Show("삭제할 대화 기록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var result = MessageBox.Show("대화 기록을 모두 삭제하시겠습니까?", "대화 기록 삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                lstMsg.Items.Clear();
+                UpdateMessageCount();
+            }
         }
     }
 }

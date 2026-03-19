@@ -1,4 +1,4 @@
-﻿    namespace EchoMessenger
+﻿namespace EchoMessenger
 {
     partial class Form1
     {
@@ -32,6 +32,8 @@
             txtStr = new TextBox();
             lstMsg = new ListBox();
             btnSend = new Button();
+            btnDelete = new Button();
+            btnClearAll = new Button();
             lblCount = new Label();
             SuspendLayout();
             // 
@@ -52,6 +54,7 @@
             txtStr.Name = "txtStr";
             txtStr.Size = new Size(759, 31);
             txtStr.TabIndex = 1;
+            txtStr.MaxLength = 50; // 글자 수 제한
             txtStr.TextChanged += textBox1_TextChanged;
             txtStr.KeyDown += txtStr_KeyDown;
             // 
@@ -77,6 +80,32 @@
             btnSend.UseVisualStyleBackColor = false;
             btnSend.Click += btnSend_Click;
             // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.FromArgb(255, 200, 200);
+            btnDelete.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            btnDelete.ForeColor = Color.Black;
+            btnDelete.Location = new Point(1060, 513);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(140, 50);
+            btnDelete.TabIndex = 5;
+            btnDelete.Text = "선택 삭제";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnClearAll
+            // 
+            btnClearAll.BackColor = Color.FromArgb(200, 200, 255);
+            btnClearAll.Font = new Font("맑은 고딕", 10F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            btnClearAll.ForeColor = Color.Black;
+            btnClearAll.Location = new Point(220, 690);
+            btnClearAll.Name = "btnClearAll";
+            btnClearAll.Size = new Size(150, 35);
+            btnClearAll.TabIndex = 6;
+            btnClearAll.Text = "대화 기록 삭제";
+            btnClearAll.UseVisualStyleBackColor = false;
+            btnClearAll.Click += btnClearAll_Click;
+            // 
             // lblCount
             // 
             lblCount.AutoSize = true;
@@ -93,7 +122,9 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 128);
-            ClientSize = new Size(1305, 731);
+            ClientSize = new Size(1305, 750);
+            Controls.Add(btnClearAll);
+            Controls.Add(btnDelete);
             Controls.Add(lblCount);
             Controls.Add(btnSend);
             Controls.Add(lstMsg);
@@ -112,6 +143,8 @@
         private TextBox txtStr;
         private ListBox lstMsg;
         private Button btnSend;
+        private Button btnDelete;
+        private Button btnClearAll;
         private Label lblCount;
     }
 }
