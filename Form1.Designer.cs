@@ -51,17 +51,16 @@
             // txtStr
             // 
             txtStr.Location = new Point(71, 559);
+            txtStr.MaxLength = 50;
             txtStr.Name = "txtStr";
             txtStr.Size = new Size(759, 31);
             txtStr.TabIndex = 1;
-            txtStr.MaxLength = 50; // 글자 수 제한
             txtStr.TextChanged += textBox1_TextChanged;
             txtStr.KeyDown += txtStr_KeyDown;
             // 
             // lstMsg
             // 
             lstMsg.FormattingEnabled = true;
-            lstMsg.ItemHeight = 25;
             lstMsg.Location = new Point(71, 123);
             lstMsg.Name = "lstMsg";
             lstMsg.Size = new Size(947, 354);
@@ -113,7 +112,7 @@
             lblCount.ForeColor = Color.Black;
             lblCount.Location = new Point(71, 695);
             lblCount.Name = "lblCount";
-            lblCount.Size = new Size(136, 28);
+            lblCount.Size = new Size(168, 32);
             lblCount.TabIndex = 4;
             lblCount.Text = "현재 대화: 0개";
             // 
@@ -133,6 +132,7 @@
             ForeColor = Color.RoyalBlue;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

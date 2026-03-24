@@ -1,3 +1,4 @@
+using EchoMessenger;
 using System;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -10,9 +11,33 @@ namespace EchoMessenger
         {
             InitializeComponent();
 
+            // UI 배치 조정 (겹침 및 글자 잘림 해결)
+            AdjustBottomControlsLayout();
+
             // 초기 메시지 개수 표시 및 입력 포커스
             UpdateMessageCount();
             txtStr.Focus();
+        }
+
+        /// <summary>
+        /// 하단 라벨과 버튼의 크기 및 위치를 동적으로 조정합니다.
+        /// </summary>
+        private void AdjustBottomControlsLayout()
+        {
+            // 1. 글자가 절대 안 잘리도록 너비(Width)를 160으로 크게 늘립니다.
+            btnClearAll.AutoSize = false;
+            btnClearAll.Size = new System.Drawing.Size(160, 35); // 가로 160, 세로 35
+
+            // 2. 버튼의 위치를 왼쪽 아래 구석으로 배치
+            int margin = 15;
+            int buttonX = margin;
+            int buttonY = this.ClientSize.Height - btnClearAll.Height - margin;
+            btnClearAll.Location = new System.Drawing.Point(buttonX, buttonY);
+
+            // 3. '현재 대화' 라벨이 버튼 위로 올라가게 배치 (여유 공간 8px)
+            int labelX = margin;
+            int labelY = btnClearAll.Location.Y - lblCount.Height - 8;
+            lblCount.Location = new System.Drawing.Point(labelX, labelY);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -114,5 +139,11 @@ namespace EchoMessenger
                 UpdateMessageCount();
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
